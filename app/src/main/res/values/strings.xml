@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name" translatable="false">Calculadora</string>
+    <string name="app_name">Calculator</string>
+    <string name="borrar">Delete</string>
+    <string name="compartir">Share</string>
+    <string name="limpiar">Clear</string>
+    <string name="atras">Back</string>
 </resources>
