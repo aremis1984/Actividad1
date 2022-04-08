@@ -19,6 +19,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val bundle :Bundle ?=intent.extras
+        if (bundle !== null){
+            finalResult = bundle.getString("final_result").toString()
+            outputTextView = findViewById(R.id.resultado)
+            outputTextView.text = finalResult
+            shareBtn = findViewById(R.id.compartir)
+            shareBtn.isEnabled = true
+        }
         shareBtn = findViewById(R.id.compartir)
         shareBtn.setOnClickListener {
             val intent = Intent(this, ShareActivity::class.java)

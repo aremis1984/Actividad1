@@ -31,6 +31,7 @@ class ShareActivity : AppCompatActivity() {
     fun back(view: View)
     {
         val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("final_result", result)
         startActivity(intent)
     }
 }
