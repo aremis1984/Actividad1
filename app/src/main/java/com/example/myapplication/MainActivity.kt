@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var shareBtn: Button
     private var numClicked: Boolean= false
     private var opClicked: Boolean= false
+    private var hasError: Boolean= false
     private var finalResult: String=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,11 +88,10 @@ class MainActivity : AppCompatActivity() {
     fun number(view: View)
     {
         outputTextView = findViewById(R.id.resultado)
-        outputTextView.append((view as Button).text)
+        if (hasError) outputTextView.text = (view as Button).text else outputTextView.append((view as Button).text)
         numClicked = true
         dotCLicked = false
         opClicked = false
-
         shareBtn = findViewById(R.id.compartir)
         shareBtn.isEnabled = false
     }
@@ -115,6 +115,7 @@ class MainActivity : AppCompatActivity() {
                 numClicked = false
                 opClicked = false
                 dotCLicked = false
+                hasError = true
             }
         }
     }
