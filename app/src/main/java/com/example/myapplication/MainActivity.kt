@@ -89,6 +89,7 @@ class MainActivity : AppCompatActivity() {
     {
         outputTextView = findViewById(R.id.resultado)
         if (hasError) outputTextView.text = (view as Button).text else outputTextView.append((view as Button).text)
+        hasError = false
         numClicked = true
         dotCLicked = false
         opClicked = false
@@ -98,25 +99,23 @@ class MainActivity : AppCompatActivity() {
 
     fun calResult(view: View)
     {
-        if (numClicked && !dotCLicked && !opClicked) {
-            val textChain = outputTextView.text.toString()
-            val expression= ExpressionBuilder(textChain).build()
-            try {
-                val result = expression.evaluate()
-                outputTextView.text = result.toString()
-                finalResult = result.toString()
-                numClicked = true
-                opClicked = false
-                dotCLicked = false
-                shareBtn = findViewById(R.id.compartir)
-                shareBtn.isEnabled = true
-            }catch (ex:Exception) {
-                outputTextView.text="Error"
-                numClicked = false
-                opClicked = false
-                dotCLicked = false
-                hasError = true
-            }
+        val textChain = outputTextView.text.toString()
+        val expression= ExpressionBuilder(textChain).build()
+        try {
+            val result = expression.evaluate()
+            finalResult = result.toString()
+            outputTextView.text = finalResult
+            numClicked = true
+            opClicked = false
+            dotCLicked = false
+            shareBtn = findViewById(R.id.compartir)
+            shareBtn.isEnabled = true
+        }catch (ex:Exception) {
+            outputTextView.text="Error"
+            numClicked = false
+            opClicked = false
+            dotCLicked = false
+            hasError = true
         }
     }
 }
